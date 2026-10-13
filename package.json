@@ -1,0 +1,9 @@
+{
+  "name": "cocotazo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "dev": "npx wrangler pages dev public"
+  }
+}

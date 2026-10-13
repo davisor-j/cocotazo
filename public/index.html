@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Cocotazo · Autoservicio</title>
+<meta name="description" content="Cocos frescos en autoservicio. Las Terrenas, Samaná.">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main class="board">
+  <h1>El Cocotazo</h1>
+  <p class="tagline" data-i18n="tagline">Autoservicio</p>
+
+  <hr>
+
+  <form method="post" action="/api/checkout">
+    <ol class="steps">
+      <li class="step">
+        <span class="number">1</span>
+        <div>
+          <h2><label for="quantity" data-i18n="pick">Elige tus cocos</label></h2>
+          <p class="price" data-i18n="each">RD$100 c/u</p>
+          <div class="stepper">
+            <button type="button" id="less" aria-label="Menos" data-i18n-label="less">−</button>
+            <input id="quantity" name="quantity" type="number" inputmode="numeric"
+                   min="1" max="20" step="1" value="1" required>
+            <button type="button" id="more" aria-label="Más" data-i18n-label="more">+</button>
+          </div>
+        </div>
+      </li>
+
+      <li class="step">
+        <span class="number">2</span>
+        <div>
+          <h2 data-i18n="pay">Paga</h2>
+          <p class="teal" data-i18n="byCard">Con tarjeta, por AZUL</p>
+          <p class="total"><span data-i18n="total">Total:</span> <output id="total" for="quantity">RD$100</output></p>
+          <button class="button" type="submit" data-i18n="payButton">Pagar</button>
+        </div>
+      </li>
+
+      <li class="step">
+        <span class="number">3</span>
+        <div>
+          <h2 data-i18n="enjoy">Disfruta</h2>
+        </div>
+      </li>
+    </ol>
+  </form>
+
+  <hr>
+
+  <p class="place">Las Terrenas, Samaná</p>
+</main>
+<script src="/i18n.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Copy to .dev.vars (git-ignored) for `npm run dev`.
+# In production these are set in Cloudflare Pages -> Settings -> Environment variables.
+
+# AZUL - given by AZUL at affiliation
+AZUL_MERCHANT_ID=
+AZUL_AUTH_KEY=
+# Optional. Defaults: test payment page, "El Cocotazo", "E-Commerce", "$"
+# AZUL_URL=https://pagos.azul.com.do/PaymentPage/Default.aspx
+# AZUL_MERCHANT_NAME=El Cocotazo
+# AZUL_MERCHANT_TYPE=E-Commerce
+# AZUL_CURRENCY_CODE=$
+
+# Sale notification email
+OWNER_EMAIL=
+SENDER_EMAIL=
+BREVO_API_KEY=
+RESEND_API_KEY=

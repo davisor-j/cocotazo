@@ -1,0 +1,168 @@
+// Translates the page into the browser's language.
+// Spanish is the text already in the HTML, so it is also the fallback for any
+// other language and for browsers without JavaScript.
+(function () {
+  var TRANSLATIONS = {
+    // Spanish only needs the texts that scripts fill in; the rest is in the HTML.
+    es: {
+      errorCode: 'Código',
+      errFunds: 'Tu tarjeta no tiene fondos suficientes.',
+      errExpired: 'La tarjeta está vencida o la fecha de expiración es incorrecta.',
+      errInvalidCard: 'El número de tarjeta o la fecha de expiración no son válidos. Revísalos e intenta otra vez.',
+      errCvc: 'El código de seguridad (CVV) es incorrecto.',
+      errCardBlocked: 'Tu banco no permite usar esta tarjeta. Usa otra tarjeta o llama a tu banco.',
+      errBank: 'Tu banco rechazó el pago. Llama a tu banco o usa otra tarjeta.',
+      errAuth: 'No se completó la verificación de tu banco (3D Secure). Intenta otra vez o usa otra tarjeta.',
+      errNotPermitted: 'Tu tarjeta no permite esta compra. Puede tener bloqueadas las compras por internet o en el extranjero: llama a tu banco o usa otra tarjeta.',
+      errSecurity: 'Tu banco bloqueó el pago por seguridad. Llama a tu banco antes de intentar otra vez.',
+      errRetry: 'El banco no respondió. Espera un momento e intenta otra vez.',
+      errBrand: 'No aceptamos este tipo de tarjeta. Usa otra tarjeta.',
+      errSystem: 'No pudimos procesar el pago por un problema nuestro. Intenta más tarde.',
+    },
+    en: {
+      tagline: 'Self-service',
+      pick: 'Pick your coconuts',
+      each: 'RD$100 each',
+      less: 'Less',
+      more: 'More',
+      pay: 'Pay',
+      byCard: 'By card, through AZUL',
+      total: 'Total:',
+      payButton: 'Pay',
+      enjoy: 'Enjoy',
+      received: 'Payment received!',
+      grab: 'Grab your coconuts and enjoy',
+      detail: 'Coconuts: {qty} · Order #{order}',
+      declined: 'The payment did not go through',
+      notCharged: 'You were not charged. You can try again.',
+      tryAgain: 'Try again',
+      unconfirmed: "We couldn't confirm your payment",
+      unconfirmedHelp: 'If your bank shows the charge, your payment is fine: grab your coconuts. If not, please try again.',
+      redirecting: 'Taking you to AZUL to pay…',
+      continue: 'Continue',
+      invalidQuantity: 'Invalid quantity',
+      unavailable: 'Online payment is not available yet',
+      wrong: 'Something went wrong',
+      back: 'Back',
+      errorCode: 'Code',
+      errFunds: 'Your card has insufficient funds.',
+      errExpired: 'The card is expired or the expiry date is wrong.',
+      errInvalidCard: 'The card number or expiry date is not valid. Check them and try again.',
+      errCvc: 'The security code (CVV) is wrong.',
+      errCardBlocked: 'Your bank does not allow this card to be used. Use another card or call your bank.',
+      errBank: 'Your bank declined the payment. Call your bank or use another card.',
+      errAuth: "Your bank's verification (3D Secure) was not completed. Try again or use another card.",
+      errNotPermitted: 'Your card does not allow this purchase. Online or foreign purchases may be blocked: call your bank or use another card.',
+      errSecurity: 'Your bank blocked the payment for security. Call your bank before trying again.',
+      errRetry: 'The bank did not respond. Wait a moment and try again.',
+      errBrand: 'We do not accept this type of card. Use another card.',
+      errSystem: 'We could not process the payment because of a problem on our side. Try again later.',
+    },
+    fr: {
+      tagline: 'Libre-service',
+      pick: 'Choisis tes noix de coco',
+      each: 'RD$100 pièce',
+      less: 'Moins',
+      more: 'Plus',
+      pay: 'Paie',
+      byCard: 'Par carte, via AZUL',
+      total: 'Total :',
+      payButton: 'Payer',
+      enjoy: 'Savoure',
+      received: 'Paiement reçu !',
+      grab: 'Prends tes noix de coco et savoure',
+      detail: 'Noix de coco : {qty} · Commande nº {order}',
+      declined: "Le paiement n'a pas abouti",
+      notCharged: "Aucun montant n'a été débité. Tu peux réessayer.",
+      tryAgain: 'Réessayer',
+      unconfirmed: "Nous n'avons pas pu confirmer ton paiement",
+      unconfirmedHelp: 'Si ta banque affiche le débit, ton paiement est bon : prends tes noix de coco. Sinon, réessaie.',
+      redirecting: 'Redirection vers AZUL pour payer…',
+      continue: 'Continuer',
+      invalidQuantity: 'Quantité non valide',
+      unavailable: "Le paiement en ligne n'est pas encore disponible",
+      wrong: "Une erreur s'est produite",
+      back: 'Retour',
+      errorCode: 'Code',
+      errFunds: "Ta carte n'a pas assez de fonds.",
+      errExpired: "La carte est expirée ou la date d'expiration est incorrecte.",
+      errInvalidCard: "Le numéro de carte ou la date d'expiration n'est pas valide. Vérifie-les et réessaie.",
+      errCvc: 'Le code de sécurité (CVV) est incorrect.',
+      errCardBlocked: "Ta banque n'autorise pas l'utilisation de cette carte. Utilise une autre carte ou appelle ta banque.",
+      errBank: 'Ta banque a refusé le paiement. Appelle ta banque ou utilise une autre carte.',
+      errAuth: "La vérification de ta banque (3D Secure) n'a pas abouti. Réessaie ou utilise une autre carte.",
+      errNotPermitted: "Ta carte n'autorise pas cet achat. Les achats en ligne ou à l'étranger sont peut-être bloqués : appelle ta banque ou utilise une autre carte.",
+      errSecurity: 'Ta banque a bloqué le paiement par sécurité. Appelle ta banque avant de réessayer.',
+      errRetry: "La banque n'a pas répondu. Attends un instant et réessaie.",
+      errBrand: "Nous n'acceptons pas ce type de carte. Utilise une autre carte.",
+      errSystem: "Nous n'avons pas pu traiter le paiement à cause d'un problème de notre côté. Réessaie plus tard.",
+    },
+    it: {
+      tagline: 'Self-service',
+      pick: 'Scegli i tuoi cocchi',
+      each: "RD$100 l'uno",
+      less: 'Meno',
+      more: 'Più',
+      pay: 'Paga',
+      byCard: 'Con carta, tramite AZUL',
+      total: 'Totale:',
+      payButton: 'Paga',
+      enjoy: 'Goditeli',
+      received: 'Pagamento ricevuto!',
+      grab: 'Prendi i tuoi cocchi e goditeli',
+      detail: 'Cocchi: {qty} · Ordine n. {order}',
+      declined: 'Il pagamento non è andato a buon fine',
+      notCharged: 'Non ti è stato addebitato nulla. Puoi riprovare.',
+      tryAgain: 'Riprova',
+      unconfirmed: 'Non siamo riusciti a confermare il pagamento',
+      unconfirmedHelp: "Se la tua banca mostra l'addebito, il pagamento è a posto: prendi i tuoi cocchi. Altrimenti riprova.",
+      redirecting: 'Ti portiamo su AZUL per pagare…',
+      continue: 'Continua',
+      invalidQuantity: 'Quantità non valida',
+      unavailable: 'Il pagamento online non è ancora disponibile',
+      wrong: 'Qualcosa è andato storto',
+      back: 'Indietro',
+      errorCode: 'Codice',
+      errFunds: 'La tua carta non ha fondi sufficienti.',
+      errExpired: 'La carta è scaduta o la data di scadenza è sbagliata.',
+      errInvalidCard: 'Il numero della carta o la data di scadenza non sono validi. Controllali e riprova.',
+      errCvc: 'Il codice di sicurezza (CVV) è sbagliato.',
+      errCardBlocked: "La tua banca non consente l'uso di questa carta. Usa un'altra carta o chiama la tua banca.",
+      errBank: "La tua banca ha rifiutato il pagamento. Chiama la tua banca o usa un'altra carta.",
+      errAuth: "La verifica della tua banca (3D Secure) non è stata completata. Riprova o usa un'altra carta.",
+      errNotPermitted: "La tua carta non consente questo acquisto. Gli acquisti online o all'estero potrebbero essere bloccati: chiama la tua banca o usa un'altra carta.",
+      errSecurity: 'La tua banca ha bloccato il pagamento per sicurezza. Chiama la tua banca prima di riprovare.',
+      errRetry: 'La banca non ha risposto. Aspetta un momento e riprova.',
+      errBrand: "Non accettiamo questo tipo di carta. Usa un'altra carta.",
+      errSystem: 'Non siamo riusciti a elaborare il pagamento per un problema nostro. Riprova più tardi.',
+    },
+  };
+
+  // First of the browser's preferred languages that we support.
+  function pickLanguage() {
+    var preferred = navigator.languages || [navigator.language || 'es'];
+    for (var i = 0; i < preferred.length; i++) {
+      var code = String(preferred[i]).slice(0, 2).toLowerCase();
+      if (TRANSLATIONS[code]) return code;
+    }
+    return 'es';
+  }
+
+  var language = pickLanguage();
+  var texts = TRANSLATIONS[language];
+
+  // Used by other scripts: returns the translation, or the Spanish fallback given.
+  window.translate = function (key, spanish) {
+    return texts[key] || TRANSLATIONS.es[key] || spanish;
+  };
+
+  document.documentElement.lang = language;
+  document.querySelectorAll('[data-i18n]').forEach(function (element) {
+    var text = texts[element.getAttribute('data-i18n')];
+    if (text) element.textContent = text;
+  });
+  document.querySelectorAll('[data-i18n-label]').forEach(function (element) {
+    var text = texts[element.getAttribute('data-i18n-label')];
+    if (text) element.setAttribute('aria-label', text);
+  });
+})();

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pago no completado · El Cocotazo</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main class="board">
+  <h1>El Cocotazo</h1>
+
+  <hr>
+
+  <p class="big" data-i18n="declined">El pago no se completó</p>
+  <p class="reason" id="reason" hidden></p>
+  <p class="note" data-i18n="notCharged">No se hizo ningún cargo. Puedes intentarlo otra vez.</p>
+
+  <a class="button" href="/" data-i18n="tryAgain">Intentar de nuevo</a>
+  <p class="code" id="code" hidden></p>
+
+  <hr>
+
+  <p class="place">Las Terrenas, Samaná</p>
+</main>
+<script src="/i18n.js"></script>
+<script type="module" src="/declined.js"></script>
+</body>
+</html>
