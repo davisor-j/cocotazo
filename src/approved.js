@@ -1,5 +1,5 @@
 /**
- * Cloudflare Pages Function
+ * Handler used by src/worker.js
  * Route: GET /api/approved
  *
  * AZUL sends the customer's browser here (ApprovedUrl) with the transaction
@@ -7,8 +7,8 @@
  * is the only moment we learn about a sale: verify the hash, email the owner,
  * then show the static success page.
  */
-import { PRICE_CENTS, verifyResponse } from '../../lib/azul.js';
-import { saleEmail, sendEmailWithFallback } from '../../lib/email.js';
+import { PRICE_CENTS, verifyResponse } from '../lib/azul.js';
+import { saleEmail, sendEmailWithFallback } from '../lib/email.js';
 
 export async function onRequestGet({ request, env, waitUntil }) {
   const url = new URL(request.url);

@@ -1,5 +1,5 @@
 # Copy to .dev.vars (git-ignored) for `npm run dev`.
-# In production these are set in Cloudflare Pages -> Settings -> Environment variables.
+# In production these are set on the Worker -> Settings -> Variables and Secrets.
 
 # AZUL - given by AZUL at affiliation
 AZUL_MERCHANT_ID=

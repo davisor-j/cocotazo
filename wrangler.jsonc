@@ -1,0 +1,11 @@
+{
+  "name": "cocotazo",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-01",
+  // Static site: served straight from this folder.
+  "assets": { "directory": "./public" },
+  // Keep the variables set in the Cloudflare dashboard when deploying.
+  "keep_vars": true,
+  // Keeps function logs (e.g. "Sale approved") visible in the dashboard.
+  "observability": { "enabled": true }
+}

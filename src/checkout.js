@@ -1,5 +1,5 @@
 /**
- * Cloudflare Pages Function
+ * Handler used by src/worker.js
  * Route: POST /api/checkout
  *
  * Receives the quantity from index.html, signs the transaction with the AZUL
@@ -8,8 +8,8 @@
  */
 import {
   AZUL_TEST_URL, buildPaymentFields, newOrderNumber, parseQuantity,
-} from '../../lib/azul.js';
-import { escapeHtml } from '../../lib/email.js';
+} from '../lib/azul.js';
+import { escapeHtml } from '../lib/email.js';
 
 function page(status, body, scripts = '') {
   return new Response(`<!doctype html>

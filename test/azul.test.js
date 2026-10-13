@@ -5,8 +5,8 @@ import { test } from 'node:test';
 import {
   buildPaymentFields, newOrderNumber, parseQuantity, signRequest, verifyResponse,
 } from '../lib/azul.js';
-import { onRequestGet } from '../functions/api/approved.js';
-import { onRequestGet as onRequestGetCheckout, onRequestPost } from '../functions/api/checkout.js';
+import { onRequestGet } from '../src/approved.js';
+import { onRequestGet as onRequestGetCheckout, onRequestPost } from '../src/checkout.js';
 
 const AUTH_KEY = 'test-auth-key';
 const env = { AZUL_MERCHANT_ID: '39038540035', AZUL_AUTH_KEY: AUTH_KEY };
@@ -251,4 +251,17 @@ test('verifyResponse accepts a real AZUL test-environment response', async () =>
   assert.equal(result.approved, false);
   assert.equal(result.amountCents, 50000);
   assert.equal(result.isoCode, '99');
+});
+
+test('worker routes the API paths and sends unknown paths home', async () => {
+  const { default: worker } = await import('../src/worker.js');
+  const ctx = { waitUntil() {} };
+  const call = (path, init) =>
+    worker.fetch(new Request(`https://cocotazo.example${path}`, init), env, ctx);
+
+  const paid = await call('/api/checkout', { method: 'POST', body: new URLSearchParams({ quantity: '1' }) });
+  assert.equal(paid.status, 200);
+  assert.equal((await call('/api/checkout')).headers.get('Location'), 'https://cocotazo.example/');
+  assert.equal((await call('/api/approved')).headers.get('Location'), 'https://cocotazo.example/unconfirmed.html');
+  assert.equal((await call('/nope')).headers.get('Location'), 'https://cocotazo.example/');
 });
