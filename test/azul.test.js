@@ -147,7 +147,7 @@ test('GET /api/checkout goes back to the home page', () => {
   assert.equal(response.headers.get('Location'), 'https://cocotazo.pages.dev/');
 });
 
-const SUCCESS_URL = 'https://cocotazo.pages.dev/success.html?order=261012193000123&qty=3';
+const SUCCESS_URL = 'https://cocotazo.pages.dev/success.html?order=261012193000123&qty=3&amount=30000&auth=OK1234&date=20261012153000&card=';
 const emailEnv = {
   ...env,
   OWNER_EMAIL: 'owner@example.com',

@@ -46,6 +46,20 @@ Spanish. To change or add a text, edit the `data-i18n` key in the HTML and the
 matching entries in `i18n.js`. AZUL's own page only offers Spanish and English,
 so non-Spanish browsers get it in English.
 
+## Card-acceptance requirements
+
+AZUL's approval asks for a few things on the site, all static in `public/`:
+
+- every page ends with the same footer: Visa, Mastercard, Visa Secure and
+  Mastercard ID Check logos (`public/img/`), links to the policies, the
+  currency (RD$ / DOP), the merchant address and the contact email and phone.
+  It is copied into each HTML file, so a change to it goes in all of them.
+- `terminos.html` (product, price, delivery, cancellations, refunds),
+  `privacidad.html` and `seguridad.html` (card data security, with the 3D
+  Secure logos). These are in Spanish only.
+- `success.html` is the payment receipt. `/api/approved` passes it the order,
+  quantity, amount, authorization code, AZUL date and the card's last 4 digits.
+
 ## Decline reasons
 
 When AZUL declines a payment it sends the customer to `declined.html` with the

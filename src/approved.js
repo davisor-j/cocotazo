@@ -52,5 +52,14 @@ export async function onRequestGet({ request, env, waitUntil }) {
     console.error('Sale email failed', err);
   }
 
-  return redirect(`/success.html?order=${encodeURIComponent(sale.orderNumber)}&qty=${quantity}`);
+  // success.html shows these as the customer's payment receipt.
+  const receipt = new URLSearchParams({
+    order: sale.orderNumber,
+    qty: quantity,
+    amount: sale.amountCents,
+    auth: sale.authorizationCode,
+    date: sale.dateTime,
+    card: sale.cardNumber.slice(-4),
+  });
+  return redirect(`/success.html?${receipt}`);
 }

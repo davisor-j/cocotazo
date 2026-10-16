@@ -13,7 +13,21 @@
   <hr>
 
   <p class="big" data-i18n="received">¡Pago recibido!</p>
-  <p class="detail" id="detail" hidden></p>
+
+  <section class="receipt" id="receipt" hidden>
+    <h2 data-i18n="receiptTitle">Comprobante de pago</h2>
+    <dl>
+      <dt data-i18n="receiptMerchant">Comercio</dt><dd>El Cocotazo</dd>
+      <dt data-i18n="receiptDate">Fecha</dt><dd id="r-date"></dd>
+      <dt data-i18n="receiptOrder">Orden</dt><dd id="r-order"></dd>
+      <dt data-i18n="receiptAuth">Autorización</dt><dd id="r-auth"></dd>
+      <dt data-i18n="receiptCard" id="r-card-label" hidden>Tarjeta</dt><dd id="r-card" hidden></dd>
+      <dt data-i18n="receiptItem">Producto</dt><dd data-i18n="receiptItemName">Coco de agua fresco</dd>
+      <dt data-i18n="receiptQty">Cantidad</dt><dd id="r-qty"></dd>
+      <dt class="sum" data-i18n="receiptTotal">Total pagado</dt><dd class="sum" id="r-total"></dd>
+    </dl>
+    <p class="receipt-note" data-i18n="receiptNote">Pagado con tarjeta a través de AZUL. Guarda una captura de esta pantalla como comprobante.</p>
+  </section>
 
   <p class="big" data-i18n="grab">Toma tus cocos y disfruta</p>
 
@@ -21,6 +35,25 @@
 
   <p class="place">Las Terrenas, Samaná</p>
 </main>
+<footer class="site-footer">
+  <div class="cards">
+    <img class="wordmark" src="/img/visa.png" alt="Visa">
+    <img src="/img/mastercard.png" alt="Mastercard">
+    <img src="/img/visa-secure.png" alt="Visa Secure">
+    <img src="/img/mastercard-id-check.png" alt="Mastercard ID Check">
+  </div>
+  <nav>
+    <a href="/terminos.html" data-i18n="footTerms">Términos, entrega y devoluciones</a> ·
+    <a href="/privacidad.html" data-i18n="footPrivacy">Privacidad</a> ·
+    <a href="/seguridad.html" data-i18n="footSecurity">Seguridad de pagos</a>
+  </nav>
+  <p data-i18n="footCurrency">Precios y cobros en pesos dominicanos (RD$ / DOP).</p>
+  <address>
+    El Cocotazo · Barney Morgan 125, Ensanche Espaillat, Santo Domingo, República Dominicana<br>
+    <a href="mailto:davisor.j@gmail.com">davisor.j@gmail.com</a> ·
+    <a href="tel:+18098657444">809-865-7444</a>
+  </address>
+</footer>
 <script src="/i18n.js"></script>
 <script src="/success.js"></script>
 </body>
